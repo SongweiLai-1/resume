@@ -1,28 +1,44 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-import {Grid, GridItem, SimpleGrid} from '@chakra-ui/react'
+import NavBar from './components/NavBar'
+import {Grid, GridItem, SimpleGrid, Stack} from '@chakra-ui/react'
+import IntroCard from './components/containers/IntroCard'
 
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-      <div className="App">
-        <Grid templateAreas={
+      <>
+        <Grid
+            templateRows="auto 1fr"
+            templateColumns="1fr"
+            h="100vh"
+            templateAreas={
           `"nav nav" 
-          "main main"`}>
+          "Int Int"
+          "Edu Edu"
+          "Exp Exp"
+          "Others Others"`}>
 
-          <GridItem bg="orange.300" area="nav">
-            <p>Hello World</p>
+          <GridItem  width="100%" bg="orange.300" area="nav">
+              <NavBar/>
           </GridItem>
-
-          <GridItem bg="green.300" area="main">
-            <p>Hello World</p>
-
+          <Stack>
+          <GridItem p="100px" bg="green.300" area="Int">
+              <IntroCard/>
           </GridItem>
+          <GridItem p="100px" bg="blue.300" area="Edu">
+                <p>Edu</p>
+          </GridItem>
+          <GridItem p="100px" bg="pink.300" area="Exp">
+                <p>Exp</p>
+          </GridItem>
+          <GridItem p="100px" bg="black" area="Others">
+                <p>Others</p>
+          </GridItem>
+          </Stack>
         </Grid>
-      </div>
+      </>
   );
 
 }
