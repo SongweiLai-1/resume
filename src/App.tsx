@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import NavBar from './components/NavBar'
 import {Box, Grid, GridItem, HStack, SimpleGrid, Stack} from '@chakra-ui/react'
-import IntroCard from './components/containers/IntroCard'
+import IntroCard from './components/Introduction/IntroCard'
 import SendEmail from "./components/SendEmail";
 import PhotoGrid from "./components/photoGrid/PhotoGrid";
+import ShowIntro from "./components/Introduction/ShowIntro";
 
 const skills = [
     'React',
@@ -59,7 +60,7 @@ function App() {
                       skills={skills}
                       onButtonClick={handleEmailClick}
                   />
-
+                  <ShowIntro/>
               </HStack>
           </GridItem>
           <GridItem p="100px" bg="blue.300" area="Edu">
