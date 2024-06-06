@@ -1,6 +1,7 @@
 import { useTrail, animated } from '@react-spring/web';
 import { ReactNode, useState, useEffect } from 'react';
 import { Box } from '@chakra-ui/react';
+import JobExperienceBox from './JobExperienceBox'
 
 // @ts-ignore
 import TypeWriter from '../typeWriter/TypeWriter'
@@ -55,25 +56,60 @@ const TypeWriterBox = () => {
         return () => clearTimeout(timeout);
     }, []);
 
+    const introduction = '  This is my personal websit, 100% coding myself. It you interest my skills, please contact me by Email and phone.'
     return (
         <div>
-            {finish ? <TypeWriter text='  This is my personal websit, 100% coding myself. It you interest my skills, please contact me by Email and phone.' /> : null }
+            {finish ? <TypeWriter text= {introduction} /> : null }
+        </div>
+    );
+};
+
+const JobBox = () => {
+    const [finish, setFinish] = useState(false);
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setFinish(true);
+        }, 8000);
+        return () => clearTimeout(timeout);
+    }, []);
+
+    const trails = useTrail(1, {
+        config: { mass: 5, tension: 2000, friction: 200 },
+        opacity: finish ? 1 : 0,
+        x: finish ? 0 : 0,
+        height: finish ? 80 : 0,
+    });
+
+    return (
+        <div>
+            {trails.map((props, index) => (
+                <animated.div key={index} style={props}>
+                    <JobExperienceBox/>
+                </animated.div>
+            ))}
         </div>
     );
 };
 
 export default function MyComponent() {
 
-
-
     return (
         <div>
-            <TypeWriterBox/>
-            <Trail>
-                <span>Welcome</span>
-                <span>The</span>
-                <span>Resume</span>
-            </Trail>
+            <Box fontSize="10px">
+                <TypeWriterBox/>
+            </Box>
+            <Box>
+                <Trail>
+                    <span>Welcome</span>
+                    <span>The</span>
+                    <span>Resume</span>
+                </Trail>
+            </Box>
+            <Box>
+                <JobBox/>
+
+            </Box>
         </div>
     );
 }
