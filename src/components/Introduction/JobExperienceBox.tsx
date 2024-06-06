@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardBody, Text, Box, Divider,Flex } from '@chakra-ui/react';
+import { Card, CardBody, Text, Box,Flex } from '@chakra-ui/react';
 import {experience} from '../../assets/profile';
 import React from 'react'
 

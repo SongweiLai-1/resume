@@ -47,19 +47,11 @@ const Trail: React.FC<TrailProps> = ({ children }) => {
 
 const TypeWriterBox = () => {
 
-    const [finish, setFinish] = useState(false);
-
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            setFinish(true);
-        }, 8000);
-        return () => clearTimeout(timeout);
-    }, []);
-
     const introduction = '  This is my personal websit, 100% coding myself. It you interest my skills, please contact me by Email and phone.'
+
     return (
         <div>
-            {finish ? <TypeWriter text= {introduction} /> : null }
+            {<TypeWriter text= {introduction} timeStart={8000} /> }
         </div>
     );
 };
@@ -96,7 +88,7 @@ export default function MyComponent() {
 
     return (
         <div>
-            <Box fontSize="10px">
+            <Box fontSize="20px">
                 <TypeWriterBox/>
             </Box>
             <Box>
