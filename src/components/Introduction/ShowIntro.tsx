@@ -1,107 +1,50 @@
-import { useTrail, animated } from '@react-spring/web';
-import { ReactNode, useState, useEffect } from 'react';
-import { Box } from '@chakra-ui/react';
-import JobExperienceBox from './JobExperienceBox'
+import React from 'react';
+import { Box, Grid, GridItem } from '@chakra-ui/react';
+import WelcomeTrail from './welcomeTrails/WelcomeTrail';
+import ExperienceBox from './experienceTrails/ExperienceBox';
+import IntroCardTail from './welcomeTrails/IntroCardTail';
 
 // @ts-ignore
-import TypeWriter from '../typeWriter/TypeWriter'
+import TypeWriter from '../typeWriter/TypeWriter';
 
-interface TrailProps {
-    children: ReactNode[];
-}
 
-const Trail: React.FC<TrailProps> = ({ children }) => {
 
-    const [reverse, setReverse] = useState(false);
 
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            setReverse(true);
-        }, 5000);
-        return () => clearTimeout(timeout);
-    }, []);
-
-    const trails = useTrail(children.length, {
-        config: { mass: 5, tension: 2000, friction: 200 },
-        opacity: reverse ? 0 : 1,
-        x: reverse ? 20 : 0,
-        height: reverse ? 0 : 3,
-        from: { opacity: 0, x: 0, height: 0 },
-        to: { opacity: 1, x: 30, height: 0 },
-        reverse: reverse,
-    });
+export default function MyComponent() {
+    const introduction = ' Welcome to my personal website.';
 
     return (
         <>
-            {trails.map((props, index) => (
-                <Box key={index} mb="130px" fontSize="200px"> {/* Adjust the fontSize as needed */}
-                    <animated.div style={props}>
-                        {children[index]}
-                    </animated.div>
-                </Box>
-            ))}
+            <Grid
+                templateRows="auto 1fr"
+                templateColumns="1fr"
+                gap={4}
+                h="550px"
+            >
+                <GridItem w="100%"  h="80px" ml="40px">
+                    <Box  w="100%">
+                        <TypeWriter text={introduction} timeStart={8000} fontSize="32px" color="white" />
+                    </Box>
+                </GridItem>
+
+                <Grid
+                    templateColumns="repeat(2, 1fr)">
+
+                    <GridItem w="100%">
+                        <IntroCardTail speed={11500}/>
+                    </GridItem>
+
+                    <GridItem w="100%" position="relative"  >
+                        <Box position="absolute" width="auto" height="100%">
+                            <WelcomeTrail />
+                        </Box>
+
+                        <Box position="absolute" top={-2} left={20} width="100%" height="100%">
+                            <ExperienceBox speed={12000}/>
+                        </Box>
+                    </GridItem>
+                </Grid>
+            </Grid>
         </>
-    );
-};
-
-
-const TypeWriterBox = () => {
-
-    const introduction = '  This is my personal websit, 100% coding myself. It you interest my skills, please contact me by Email and phone.'
-
-    return (
-        <div>
-            {<TypeWriter text= {introduction} timeStart={8000} /> }
-        </div>
-    );
-};
-
-const JobBox = () => {
-    const [finish, setFinish] = useState(false);
-
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            setFinish(true);
-        }, 8000);
-        return () => clearTimeout(timeout);
-    }, []);
-
-    const trails = useTrail(1, {
-        config: { mass: 5, tension: 2000, friction: 200 },
-        opacity: finish ? 1 : 0,
-        x: finish ? 0 : 0,
-        height: finish ? 80 : 0,
-    });
-
-    return (
-        <div>
-            {trails.map((props, index) => (
-                <animated.div key={index} style={props}>
-                    <JobExperienceBox/>
-                </animated.div>
-            ))}
-        </div>
-    );
-};
-
-export default function MyComponent() {
-
-    return (
-        <div>
-            <Box fontSize="20px">
-                <TypeWriterBox/>
-            </Box>
-            <Box>
-                <Trail>
-                    <span>Welcome</span>
-                    <span>The</span>
-                    <span>Resume</span>
-                </Trail>
-            </Box>
-            <Box>
-                <JobBox/>
-
-            </Box>
-        </div>
     );
 }

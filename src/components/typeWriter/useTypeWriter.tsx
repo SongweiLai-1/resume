@@ -89,10 +89,8 @@ const UseTypeWriter = ({ text, speed = 50, pauseDuration = 10, timeStart = 100 }
 
     return (
         <Flex>
-            <span>
                 {displayText}
                 {start ? (!isTypingComplete && <Blink blink={blinking} />) : null}
-            </span>
         </Flex>
     );
 };

@@ -6,26 +6,7 @@ import SendEmail from "./components/SendEmail";
 import PhotoGrid from "./components/photoGrid/PhotoGrid";
 import ShowIntro from "./components/Introduction/ShowIntro";
 
-const skills = [
-    'React',
-    'HT',
-    'Next.js',
-    'Node.js',
-    'PostgreSQL',
-    'AWS'
-];
-
-const handleEmailClick = (doc:string, action :string) => {
-    if(action === "email") {
-        console.log("Email clicked");
-    }
-    if(action === "resume") {
-        window.open(doc);
-    }
-};
-
-
-
+import Background1 from "./assets/IntroBackGround.jpg";
 
 function App() {
 
@@ -42,26 +23,21 @@ function App() {
           "Exp Exp"
           "Others Others"`}>
 
-          <GridItem  width="100%" bg="orange.300" area="nav">
+          <GridItem  width="100%" bg="black.300" area="nav">
               <NavBar/>
           </GridItem>
           <Stack>
 
-          <GridItem p="100px" bg="green.300" area="Int">
+          <GridItem p="100px"
+                    backgroundImage={Background1}
+                    bgPosition="center"
+                    bgRepeat="no-repeat"
+                    bgSize="2000px"
+                    area="Int">
               <HStack>
-                  <IntroCard
-                      h="550px" w="400px"
-                      name="Songwei Lai"
-                      avatarUrl="https://bit.ly/dan-abramov"
-                      username="Songwei.lai.9"
-                      description="Market Trader, Web programmer, Camper and Cafe maker. I like challenge anything news that inspire me. Email me when you interest my experiences"
-                      email="songweilai.9@gmail"
-                      resume="src/assets/Resume-Songwei.Lai.pdf"
-                      skills={skills}
-                      onButtonClick={handleEmailClick}
-                  />
                   <ShowIntro/>
               </HStack>
+
           </GridItem>
           <GridItem p="100px" bg="blue.300" area="Edu">
                 <p>Edu</p>
