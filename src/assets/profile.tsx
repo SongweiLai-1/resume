@@ -1,5 +1,5 @@
-
-
+import utsLogo from './logo/utsLg.png';
+import unswLogo from './logo/unswLg.png';
 
 export const profiles = [
     {
@@ -36,5 +36,22 @@ export const experience = [
         company_name: "H&T Realty, Sydney",
         date:"Jul 2018 - Aug 2019",
         description: "Giving Financial advice and guiding customers to purchase property in Sydney, assist client in purchasing properties ,and allocate the loan financial products."
+    },
+];
+
+export const educationData = [
+    {
+        schoolLogo: unswLogo,
+        schoolName: 'University Of New South Wales',
+        degree: 'Bachelor of Commerce',
+        time: '2021 - 2024',
+        description: 'Focused on software engineering and artificial intelligence.',
+    },
+    {
+        schoolLogo: utsLogo,
+        schoolName: 'University Of Technology Sydney',
+        degree: 'Master of Science in Computer Science',
+        time: '2018 - 2021',
+        description: 'Specialized in machine learning and data science.',
     },
 ];

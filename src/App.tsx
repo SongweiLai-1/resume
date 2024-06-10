@@ -5,8 +5,13 @@ import IntroCard from './components/Introduction/IntroCard'
 import SendEmail from "./components/SendEmail";
 import PhotoGrid from "./components/photoGrid/PhotoGrid";
 import ShowIntro from "./components/Introduction/ShowIntro";
-
+import EducationBox from "./components/containers/EducationBox";
 import Background1 from "./assets/IntroBackGround.jpg";
+
+
+
+import Edu from "./Edu"
+
 
 function App() {
 
@@ -34,15 +39,16 @@ function App() {
                     bgRepeat="no-repeat"
                     bgSize="2000px"
                     area="Int">
-              <HStack>
+              <HStack >
                   <ShowIntro/>
               </HStack>
-
           </GridItem>
-          <GridItem p="100px" bg="blue.300" area="Edu">
-                <p>Edu</p>
-          </GridItem>
-          <GridItem p="100px" bg="pink.300" area="Exp">
+              <GridItem  area="Edu">
+                  <Grid  gap={1}>
+                      <Edu/>
+                  </Grid>
+              </GridItem>
+              <GridItem p="100px" bg="pink.300" area="Exp">
               <PhotoGrid />
           </GridItem>
           <GridItem p="100px" bg="black" area="Others">
