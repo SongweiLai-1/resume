@@ -18,7 +18,7 @@ const SendEmail = () => {
     };
 
 
-    if (emailIsSend === false) {
+    if (!emailIsSend) {
 
         return (
             <div>

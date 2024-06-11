@@ -1,5 +1,5 @@
 import { useScroll, animated, useSpring, useTrail } from '@react-spring/web';
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import { Grid, GridItem, Box,Text } from '@chakra-ui/react';
 import EduBox from './containers/EducationBox';
 import educationBG from '../assets/photos/education_BI.jpg';
