@@ -50,8 +50,8 @@ const Emailbox: React.FC<FormProps> = ({ onFormSubmit }) => {
 
     return (
         <Card
-            h="500px"
-            w="400px"
+            h="400px"
+            w="600px"
             display="flex"
             flexDirection="column"
             alignItems="center"
@@ -68,6 +68,7 @@ const Emailbox: React.FC<FormProps> = ({ onFormSubmit }) => {
             <CardBody>
                 <Box display="flex" flexDirection="column" alignItems="center">
                     <Input
+                        size='sm'
                         placeholder="Enter your name"
                         name="name"
                         value={formState.name}
@@ -76,6 +77,7 @@ const Emailbox: React.FC<FormProps> = ({ onFormSubmit }) => {
                         type="text"
                     />
                     <Input
+                        size='sm'
                         placeholder="Enter your email"
                         name="email"
                         value={formState.email}
@@ -92,6 +94,7 @@ const Emailbox: React.FC<FormProps> = ({ onFormSubmit }) => {
                         type="text"
                     />
                     <Input
+                        size='sm'
                         placeholder="Enter your phone number"
                         name="phoneNumber"
                         value={formState.phoneNumber}

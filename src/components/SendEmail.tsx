@@ -18,21 +18,18 @@ const SendEmail = () => {
     };
 
 
-if (emailIsSend === false) {
+    if (emailIsSend === false) {
 
-    return (
-        <div>
-            <EmailBox onFormSubmit={handleEmailSubmit} />
-        </div>
-    );
-} else {
-    return (
-        <div>
-            <EmailSendedBox />
-        </div>
-    );
-}
-
-};
+        return (
+            <div>
+                <EmailBox onFormSubmit={handleEmailSubmit} />
+            </div>
+        );
+    } else {
+        return (
+            <div>
+                <EmailSendedBox />
+            </div>
+        );}};
 
 export default SendEmail;

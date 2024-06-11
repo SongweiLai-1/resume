@@ -19,7 +19,7 @@ export default function MyComponent() {
                 templateRows="auto 1fr"
                 templateColumns="1fr"
                 gap={4}
-                h="550px"
+                h="590px"
             >
                 <GridItem w="100%"  h="80px" ml="40px">
                     <Box  w="100%">
