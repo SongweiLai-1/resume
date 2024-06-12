@@ -46,10 +46,10 @@ const MyComponent: React.FC = () => {
 
     const { scrollYProgress } = useScroll({
         onChange: ({ value: { scrollYProgress } }) => {
-            console.log(scrollYProgress);
+            //console.log(scrollYProgress);
 
             if (scrollYProgress > 0.1) {
-                console.log('Edu page isOpen');
+                //console.log('Edu page isOpen');
                 setOpen(true);
             } else {
                 setOpen(false);

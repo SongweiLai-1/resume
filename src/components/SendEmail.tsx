@@ -1,15 +1,13 @@
+// SendEmail.tsx
 import React from 'react';
 import EmailBox from "./containers/Emailbox";
 import EmailSendedBox from "./containers/EmailSendedBox";
 
-
-
 const SendEmail = () => {
-
     const [emailIsSend, setEmailIsSend] = React.useState(false);
 
-    const handleEmailSubmit = (data: { name: string; email: string; content: string; phoneNumber: string }) => {
-        //处理Email文件
+    const handleEmailSubmit = (data: { name: string; email: string; content: string }) => {
+        // 处理Email文件
         if (data) {
             setEmailIsSend(true);
             console.log('Email submitted!');
@@ -17,19 +15,15 @@ const SendEmail = () => {
         }
     };
 
-
-    if (!emailIsSend) {
-
-        return (
-            <div>
-                <EmailBox onFormSubmit={handleEmailSubmit} />
-            </div>
-        );
-    } else {
-        return (
-            <div>
+    return (
+        <div>
+            {!emailIsSend ? (
+                <EmailBox  />
+            ) : (
                 <EmailSendedBox />
-            </div>
-        );}};
+            )}
+        </div>
+    );
+};
 
 export default SendEmail;

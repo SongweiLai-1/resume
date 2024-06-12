@@ -14,7 +14,7 @@ const EmailSendedBox  = () => {
 
     return (
         <Card
-            h="400px"
+            h="300px"
             w="600px"
             display="flex"
             flexDirection="column"

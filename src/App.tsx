@@ -1,6 +1,6 @@
 import React from 'react'
 import NavBar from './components/NavBar'
-import {Box, Grid, GridItem, HStack, Stack, } from '@chakra-ui/react'
+import {Box, Grid, GridItem, Stack, } from '@chakra-ui/react'
 import SendEmail from "./components/SendEmail";
 import PhotoGrid from "./components/photoGrid/PhotoGrid";
 import ShowIntro from "./components/Introduction/ShowIntro";
@@ -30,19 +30,18 @@ function App() {
               <NavBar/>
           </GridItem>
           <Stack>
-
-          <GridItem p="100px"
+          <GridItem
+                    w="100%"
+                    h="100%"
                     backgroundImage={Background1}
                     bgPosition="center"
                     bgRepeat="no-repeat"
                     bgSize="2000px"
                     area="Int">
-              <HStack >
                   <ShowIntro/>
-              </HStack>
           </GridItem>
               <GridItem  area="Edu">
-                  <Grid  gap={4} mt={2}>
+                  <Grid  gap={4} mt={7}>
                       <Edu/>
                   </Grid>
               </GridItem>
@@ -53,8 +52,12 @@ function App() {
                   <PhotoGrid />
           </GridItem>
 
-          <GridItem p="40px" bg="#345574" area="Others">
-              <Box display="flex" alignItems="center" justifyContent="center" height="50vh">
+          <GridItem
+                    h="100%"
+                    w="100%"
+                    bg="#253849"
+                    area="Others">
+              <Box display="flex" alignItems="center" justifyContent="center" >
                   <SendEmail />
               </Box>
           </GridItem>

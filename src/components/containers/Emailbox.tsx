@@ -1,124 +1,184 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
-    Card,
-    CardHeader,
-    CardBody,
-    Heading,
-    Input,
+    Box,
     Button,
-    useColorModeValue,
-    Box
+    Container,
+    Flex,
+    FormControl,
+    FormLabel,
+    Heading,
+    HStack,
+    Input,
+    InputGroup,
+    InputLeftElement,
+    Text,
+    Textarea,
+    VStack,
+    Wrap,
+    WrapItem,
+    IconButton
 } from '@chakra-ui/react';
+import { MdEmail, MdLocationOn, MdOutlineEmail, MdPhone } from 'react-icons/md';
+import { BsPerson } from 'react-icons/bs';
+import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa6";
 
-interface FormData {
-    name: string;
-    email: string;
-    content: string;
-    phoneNumber: string;
-}
-
-interface FormProps {
-    onFormSubmit: (data: FormData) => void;
-}
-
-const Emailbox: React.FC<FormProps> = ({ onFormSubmit }) => {
-
-    const [formState, setFormState] = useState<FormData>({
+const Emailbox = () => {
+    const [formState, setFormState] = useState({
         name: '',
         email: '',
-        content: '',
-        phoneNumber: '',
+        message: ''
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        setFormState((prevState) => ({
+        setFormState(prevState => ({
             ...prevState,
-            [name]: value,
+            [name]: value
         }));
     };
 
-    const handleSubmit = () => {
-        onFormSubmit(formState);
-        setFormState({
-            name: '',
-            email: '',
-            content: '',
-            phoneNumber: '',
-        });
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log(formState);
+        // You can further handle the form submission, e.g., send the data to a server
     };
 
     return (
-        <Card
-            h="400px"
-            w="600px"
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-            overflow="auto"
-            bg={useColorModeValue('white', 'gray.800')}
-            boxShadow="lg"
-            p={4}
-            rounded="md"
-        >
-            <CardHeader>
-                <Heading fontSize="xl" textAlign="center">Contact Us</Heading>
-            </CardHeader>
-            <CardBody>
-                <Box display="flex" flexDirection="column" alignItems="center">
-                    <Input
-                        size='sm'
-                        placeholder="Enter your name"
-                        name="name"
-                        value={formState.name}
-                        onChange={handleChange}
-                        mb={4}
-                        type="text"
-                    />
-                    <Input
-                        size='sm'
-                        placeholder="Enter your email"
-                        name="email"
-                        value={formState.email}
-                        onChange={handleChange}
-                        mb={4}
-                        type="email"
-                    />
-                    <Input
-                        placeholder="Enter your message"
-                        name="content"
-                        value={formState.content}
-                        onChange={handleChange}
-                        mb={4}
-                        type="text"
-                    />
-                    <Input
-                        size='sm'
-                        placeholder="Enter your phone number"
-                        name="phoneNumber"
-                        value={formState.phoneNumber}
-                        onChange={handleChange}
-                        mb={4}
-                        type="tel"
-                    />
-                    <Button
-                        w="full"
-                        bg={useColorModeValue('#151f21', 'gray.900')}
-                        color="white"
-                        rounded="md"
-                        _hover={{
-                            transform: 'translateY(-2px)',
-                            boxShadow: 'lg',
-                        }}
-                        onClick={handleSubmit}
-                    >
-                        Submit
-                    </Button>
+        <Container maxW="full" mt={0} centerContent overflow="hidden">
+            <Flex>
+                <Box
+                    bg="grey.300"
+                    color="white"
+                    borderRadius="lg"
+                    m={{ sm: 1, md: 2, lg: 4 }}
+                    p={{ sm: 5, md: 5, lg: 14 }}
+                >
+                    <Wrap spacing={{ base: 20, sm: 3, md: 5, lg: 20 }}>
+                        <Box>
+                            <HStack spacing={20}>
+                                <WrapItem>
+                                    <Box>
+                                        <Heading>Contact me</Heading>
+                                        <Text mt={{ sm: 3, md: 3, lg: 5 }} color="gray.500">
+                                            Please message me
+                                        </Text>
+                                        <Box py={{ base: 5, sm: 5, md: 8, lg: 10 }}>
+                                            <VStack pl={0} spacing={3} alignItems="flex-start">
+                                                <Button
+                                                    size="md"
+                                                    height="48px"
+                                                    width="200px"
+                                                    variant="ghost"
+                                                    color="#DCE2FF"
+                                                    leftIcon={<MdPhone color="#1970F1" size="20px" />}
+                                                >
+                                                    61+ 0402214407
+                                                </Button>
+                                                <Button
+                                                    size="md"
+                                                    height="48px"
+                                                    width="200px"
+                                                    variant="ghost"
+                                                    color="#DCE2FF"
+                                                    leftIcon={<MdEmail color="#1970F1" size="20px" />}
+                                                >
+                                                    songwei.lai.9@gmail
+                                                </Button>
+                                                <Button
+                                                    size="md"
+                                                    height="48px"
+                                                    width="200px"
+                                                    variant="ghost"
+                                                    color="#DCE2FF"
+                                                    leftIcon={<MdLocationOn color="#1970F1" size="20px" />}
+                                                >
+                                                    Sydney-NSW-Aus
+                                                </Button>
+                                            </VStack>
+                                        </Box>
+                                        <HStack
+                                            mt={{ lg: 3, md: 1 }}
+                                            spacing={5}
+                                            px={5}
+                                            alignItems="flex-start"
+                                        >
+                                            <IconButton aria-label='Search Linkedin' icon={<FaLinkedin />} />
+                                            <IconButton aria-label='Search Github' icon={<FaGithub />} />
+                                            <IconButton aria-label='Search Instagram' icon={<FaInstagram />} />
+                                        </HStack>
+                                    </Box>
+                                </WrapItem>
+                                <WrapItem>
+                                    <Box bg="white" borderRadius="lg">
+                                        <Box m={8} color="#0B0E3F">
+                                            <form onSubmit={handleSubmit}>
+                                                <VStack pl={0} spacing={3} alignItems="flex-start">
+                                                    <FormControl id="name">
+                                                        <FormLabel>Your Name</FormLabel>
+                                                        <InputGroup borderColor="#E0E1E7">
+                                                            <InputLeftElement
+                                                                pointerEvents="none"
+                                                                children={<BsPerson color="gray.800" />}
+                                                            />
+                                                            <Input
+                                                                type="text"
+                                                                size="md"
+                                                                name="name"
+                                                                value={formState.name}
+                                                                onChange={handleChange}
+                                                            />
+                                                        </InputGroup>
+                                                    </FormControl>
+                                                    <FormControl id="email">
+                                                        <FormLabel>Mail</FormLabel>
+                                                        <InputGroup borderColor="#E0E1E7">
+                                                            <InputLeftElement
+                                                                pointerEvents="none"
+                                                                children={<MdOutlineEmail color="gray.800" />}
+                                                            />
+                                                            <Input
+                                                                type="email"
+                                                                size="md"
+                                                                name="email"
+                                                                value={formState.email}
+                                                                onChange={handleChange}
+                                                            />
+                                                        </InputGroup>
+                                                    </FormControl>
+                                                    <FormControl id="message">
+                                                        <FormLabel>Message</FormLabel>
+                                                        <Textarea
+                                                            borderColor="gray.300"
+                                                            _hover={{ borderRadius: 'gray.300', }}
+                                                            placeholder="message"
+                                                            name="message"
+                                                            value={formState.message}
+                                                            onChange={handleChange}
+                                                        />
+                                                    </FormControl>
+                                                    <FormControl id="submit" float="right">
+                                                        <Button
+                                                            type="submit"
+                                                            variant="solid"
+                                                            bg="#0D74FF"
+                                                            color="white"
+                                                            _hover={{}}
+                                                        >
+                                                            Send Message
+                                                        </Button>
+                                                    </FormControl>
+                                                </VStack>
+                                            </form>
+                                        </Box>
+                                    </Box>
+                                </WrapItem>
+                            </HStack>
+                        </Box>
+                    </Wrap>
                 </Box>
-            </CardBody>
-        </Card>
+            </Flex>
+        </Container>
     );
-};
+}
 
 export default Emailbox;
