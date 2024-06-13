@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container} from '@chakra-ui/react';
+import { Box, Stack, Wrap, WrapItem, useBreakpointValue } from '@chakra-ui/react';
 import WelcomeTrail from './welcomeTrails/WelcomeTrail';
 import ExperienceBox from './experienceTrails/ExperienceBox';
 import IntroCardTail from './welcomeTrails/IntroCardTail';
@@ -7,33 +7,33 @@ import IntroCardTail from './welcomeTrails/IntroCardTail';
 // @ts-ignore
 import TypeWriter from '../typeWriter/TypeWriter';
 
-
-
-
 export default function MyComponent() {
     const introduction = ' Welcome to my personal website.';
 
-    return (
-        <>
-            <Container   p={{ sm: 30, md: 50, lg: 80 }}>
 
-                    <Box  p={{ sm: 8, md: 12, lg: 18 }} >
+    return (
+
+            <Box  >
+                <Stack >
+
+                    <Box ml={30}>
                         <TypeWriter text={introduction} timeStart={8000} fontSize="32px" color="white" />
                     </Box>
 
-                    <Box w="100%">
-                        <IntroCardTail speed={11500}/>
-                    </Box>
+                    <Wrap spacing="100px" justify="center" align="center">
+                            <WrapItem>
+                                <IntroCardTail speed={11500} />
+                            </WrapItem>
+                            <WrapItem mt={{base: 500, sm: 500,   md: 500, lg: 100}}>
+                                <ExperienceBox speed={12000} />
+                            </WrapItem>
+                    </Wrap>
 
-                    <Box position="absolute" width="auto" height="100%">
-                         <WelcomeTrail />
+                    <Box>
+                        <WelcomeTrail />
                     </Box>
+                </Stack>
+            </Box>
 
-                    <Box position="absolute"  width="100%" height="100%">
-                         <ExperienceBox speed={12000}/>
-                    </Box>
-            </Container>
-
-        </>
     );
 }

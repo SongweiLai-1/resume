@@ -26,8 +26,8 @@ const JobExperienceBox = () => {
     return (
         <>
             {experience.map((job, index) => (
-                <Card key={index} my={2} w="800px" >
-                    <CardBody w="800px" >
+                <Card key={index} my={2}  >
+                    <CardBody >
                         <Job
                             jobName={job.occupation}
                             company={job.company_name}

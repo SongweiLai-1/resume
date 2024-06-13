@@ -62,13 +62,13 @@ const MyComponent: React.FC = () => {
     });
 
     return (
-        <div style={{ height: 'auto', overflowY: 'scroll' }}>
-            <Grid templateColumns="repeat(2, 1fr)" gap={1}>
-                <GridItem>
+        <div style={{   overflowY: 'scroll' }}>
+            <Grid templateColumns="30% 70%" gap={1}>
+                <GridItem w="98%">
                     {/* 空白网格项 */}
                 </GridItem>
                 <GridItem
-                    w="900px"
+                    w="98%"
                     h="500px"
                     backgroundImage={`url(${educationBG})`}
                     backgroundPosition="center"
