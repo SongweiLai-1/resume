@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {animated, useTrail} from "@react-spring/web";
 import JobExperienceBox from "../JobExperienceBox";
+import { Box } from '@chakra-ui/react';
 
 interface Props {
     speed: number;
@@ -24,11 +25,14 @@ const ExperienceBox = ({speed} : Props) => {
 
     return (
         <div>
-            {trails.map((props, index) => (
-                <animated.div key={index} style={props}>
-                    <JobExperienceBox/>
-                </animated.div>
-            ))}
+            <Box h="100%" w="100%">
+                    {trails.map((props, index) => (
+                            <animated.div key={index} style={props}>
+                                    <JobExperienceBox/>
+                            </animated.div>
+                    ))}
+            </Box>
+
         </div>
     );
 };

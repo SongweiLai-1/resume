@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Stack, Wrap, WrapItem, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Stack, Wrap, WrapItem } from '@chakra-ui/react';
 import WelcomeTrail from './welcomeTrails/WelcomeTrail';
 import ExperienceBox from './experienceTrails/ExperienceBox';
 import IntroCardTail from './welcomeTrails/IntroCardTail';
@@ -19,16 +19,20 @@ export default function MyComponent() {
                     <Box ml={30}>
                         <TypeWriter text={introduction} timeStart={8000} fontSize="32px" color="white" />
                     </Box>
-
-                    <Wrap spacing="100px" justify="center" align="center">
-                            <WrapItem>
-                                <IntroCardTail speed={11500} />
-                            </WrapItem>
-                            <WrapItem mt={{base: 500, sm: 500,   md: 500, lg: 100}}>
-                                <ExperienceBox speed={12000} />
-                            </WrapItem>
-                    </Wrap>
-
+                        <Box mt={10}>
+                            <Wrap spacing={20} justify="center" align="center" >
+                                    <WrapItem>
+                                        <Box>
+                                            <IntroCardTail speed={11500} />
+                                        </Box>
+                                    </WrapItem>
+                                    <WrapItem >
+                                        <Box w="600px">
+                                            <ExperienceBox speed={12000} />
+                                        </Box>
+                                    </WrapItem>
+                            </Wrap>
+                        </Box>
                     <Box>
                         <WelcomeTrail />
                     </Box>

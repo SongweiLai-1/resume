@@ -55,6 +55,7 @@ function Masonry() {
 
     // 渲染网格
     return (
+
         <div ref={ref} className={styles.list} style={{ height: Math.max(...heights) }}>
             {transitions((style, item) => (
                 <a.div key={item.css} style={style}>
@@ -64,6 +65,8 @@ function Masonry() {
                         style={{ backgroundImage: `url(${item.css}?auto=compress&dpr=2&h=500&w=500)` }}
                     />
                 </a.div>
+
+
             ))}
         </div>
     );

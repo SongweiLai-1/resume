@@ -18,7 +18,7 @@ const EmailSendedBox  = () => {
             w="600px"
             display="flex"
             flexDirection="column"
-            alignItems="center"
+            alignItems="cener"
             justifyContent="center"
             overflow="auto"
             bg={useColorModeValue('white', 'gray.800')}
