@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import MusicControl from "./MusicControl";
-import { HStack } from "@chakra-ui/react";
+import { HStack, Image, Box,Stack, Text } from "@chakra-ui/react";
+import './MusicPlayer.css'
 
 // 定义播放列表条目的类型
 interface Track {
@@ -13,26 +14,78 @@ interface Track {
 
 // 定义组件属性的类型
 interface MusicPlayerProps {
-  track: Track[];
+  tracks: Track[];
 }
 
-const MusicPlayer: React.FC<MusicPlayerProps> = ({ track }) => {
+const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks }) => {
   const [trackIndex, setTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const { title, artist, color, image, audioSrc } = track[trackIndex];
+  const { title, artist, color, image, audioSrc } = tracks[trackIndex];
+
+  const audioRef = useRef(new Audio(audioSrc));
 
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);
   };
 
+  const toPrevTrack = () => {
+    if (trackIndex - 1 < 0) {
+      setTrackIndex(tracks.length - 1);
+      console.log(trackIndex)
+    } else {
+      setTrackIndex(trackIndex - 1);
+      console.log(trackIndex)
+    }
+  };
+
+  const toNextTrack = () => {
+    if (trackIndex < tracks.length - 1) {
+      setTrackIndex(trackIndex + 1);
+      console.log(trackIndex)
+    } else {
+      setTrackIndex(0);
+      console.log(trackIndex)
+    }
+  };
+
+  useEffect (() => {
+    if (isPlaying) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  }, [isPlaying]);
+
+  useEffect(() => {
+    audioRef.current.pause();
+    audioRef.current = new Audio(audioSrc);
+    audioRef.current.play();
+
+  }, [trackIndex]);
 
   return (
+
       <HStack>
+
+          <Text fontSize='xl'>{title}</Text>
+          <Text>-</Text>
+          <Text fontSize='xs'>{artist}</Text>
+
         <MusicControl
             isPlaying={isPlaying}
             onPlayPauseClick={togglePlayPause}
+            onPrevClick={toPrevTrack}
+            onNextClick={toNextTrack}
         />
+        <Box overflow="hidden">
+          <Image
+              src={image}
+              borderRadius='full'
+              boxSize='60px'
+              className={isPlaying ? "rotate" : ""}/>
+        </Box>
+
       </HStack>
   );
 };

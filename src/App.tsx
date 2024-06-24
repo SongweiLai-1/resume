@@ -60,7 +60,6 @@ function App() {
                             <NavBar onSectionClick={handleSectionClick} />
                         </Box>
                     </GridItem>
-
                     <GridItem
                         w="auto"
                         h={introHeight}
