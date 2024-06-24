@@ -17,8 +17,9 @@ import {
     Stack,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-
-const Links = ['Introduction', 'Education', 'PhotoGrid', 'Others'];
+import MusicPlayer from './musicPlayer/MusicPlayer';
+import playList from './musicPlayer/playList';
+const Links = ['Introduction', 'Experience ','Education', 'PhotoGrid', 'Github','Others'];
 
 interface NavLinkProps {
     children: ReactNode;
@@ -77,6 +78,7 @@ const NavBar: React.FC<NavBarProps> = ({ onSectionClick }) => {
                                 </NavLink>
                             ))}
                         </HStack>
+                        <Box> <MusicPlayer track={playList}/> </Box>
                     </HStack>
                     <Box m={5}>
                         <Menu arrowPadding={5}>
@@ -95,10 +97,10 @@ const NavBar: React.FC<NavBarProps> = ({ onSectionClick }) => {
                                 />
                             </MenuButton>
                             <MenuList>
-                                <MenuItem>Link 1</MenuItem>
-                                <MenuItem>Link 2</MenuItem>
+                                <MenuItem>Testing</MenuItem>
+                                <MenuItem>Testing</MenuItem>
                                 <MenuDivider />
-                                <MenuItem>Link 3</MenuItem>
+                                <MenuItem>Testing</MenuItem>
                             </MenuList>
                         </Menu>
                     </Box>

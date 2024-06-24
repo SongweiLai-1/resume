@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useMemo, MouseEventHandler } from 'react';
 import useMeasure from 'react-use-measure';
 import { useTransition, a } from '@react-spring/web';
+import {Heading} from '@chakra-ui/react';
+
 
 import useMedia from './useMedia';
 import data from './Pdata'; // 导入图片数据
@@ -57,6 +59,14 @@ function Masonry() {
     return (
 
         <div ref={ref} className={styles.list} style={{ height: Math.max(...heights) }}>
+
+            <Heading
+                fontSize={'5xl'}
+                display="flex"
+                alignItems="center"
+                justifyContent="center">Photo Grid</Heading>
+
+
             {transitions((style, item) => (
                 <a.div key={item.css} style={style}>
                     <div

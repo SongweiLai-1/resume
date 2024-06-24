@@ -5,7 +5,7 @@ import ExperienceBox from './experienceTrails/ExperienceBox';
 import IntroCardTail from './welcomeTrails/IntroCardTail';
 
 // @ts-ignore
-import TypeWriter from '../typeWriter/TypeWriter';
+import TypeWriter from '../function/typeWriter/TypeWriter';
 
 export default function MyComponent() {
     const introduction = ' Welcome to my personal website.';

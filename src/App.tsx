@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from './components/NavBar';
+import NavBar from './components/containers/NavBar';
 import { Box, Grid, GridItem, Stack, useBreakpointValue } from '@chakra-ui/react';
 import SendEmail from './components/SendEmail';
 import PhotoGrid from './components/photoGrid/PhotoGrid';
@@ -7,6 +7,7 @@ import ShowIntro from './components/Introduction/ShowIntro';
 import Background1 from './assets/IntroBackGround.jpg';
 import Edu from './components/EduBox';
 import { Element, scroller } from 'react-scroll';
+
 
 function App() {
     const introHeight = useBreakpointValue({ base: '800px', sm: '1200px', md: '1100px', lg: '800px' });
@@ -47,8 +48,9 @@ function App() {
                 templateAreas={`
           "nav"
           "Int"
+          "Exp"          
           "Edu"
-          "Exp"
+          "grid"
           "Others"
         `}
             >
@@ -75,6 +77,14 @@ function App() {
                         </Element>
                     </GridItem>
 
+                    <GridItem>
+                        <Element name="Experience">
+                            <Box bg="black" id="Experience" display="flex" alignItems="center" justifyContent="center">
+                                <p>Experience</p>
+                            </Box>
+                        </Element>
+                    </GridItem>
+
                     <GridItem area="Edu" mt={10}>
                         <Element name="Education">
                             <Box id="Education" >
@@ -83,11 +93,11 @@ function App() {
                         </Element>
                     </GridItem>
 
-                    <GridItem p="100px" area="Exp">
-                        <Element name="Experience">
-                            <Box display="flex" alignItems="center" justifyContent="center">
-                                My Photo Grid
-                            </Box>
+
+
+                    <GridItem p="100px" area="grid">
+                        <Element name="PhotoGrid">
+
                             <Box id="PhotoGrid">
                                 <PhotoGrid />
                             </Box>

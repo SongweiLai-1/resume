@@ -12,8 +12,10 @@ export const profiles = [
             'Next.js',
             'Node.js',
             'PostgreSQL',
-            'AWS'
-        ]
+            'AWS'],
+        github: "https://github.com/SongweiLai-1?tab=overview&from=2024-06-01&to=2024-06-24",
+        linkin: "https://www.linkedin.com/in/songwei-lai-43118b181/",
+        ins: "https://www.instagram.com/laisongwei3536/?next=%2Fhendryscoffee%2Freel%2FC7Q6JBsp0k3%2F",
     },
 ];
 
