@@ -1,6 +1,7 @@
 import React from "react";
 import {Box, Button, HStack} from '@chakra-ui/react';
 import { TbPlayerSkipBackFilled,TbPlayerSkipForwardFilled,TbPlayerPauseFilled,TbPlayerPlayFilled } from "react-icons/tb";
+import './MusicPlayer.css'
 
 // 修正后的接口定义
 interface Action {
@@ -14,11 +15,11 @@ const MusicControl: React.FC<Action> = ({isPlaying,onPlayPauseClick, onPrevClick
     return (
         <Box>
             <HStack>
-                <Button onClick={onPrevClick}><TbPlayerSkipBackFilled/></Button>
-                <Button onClick={onPlayPauseClick}>
+                <Button className="button_1" onClick={onPrevClick}><TbPlayerSkipBackFilled/></Button>
+                <Button className="button_1" onClick={onPlayPauseClick}>
                     {isPlaying ? <TbPlayerPauseFilled/> : <TbPlayerPlayFilled/>}
                 </Button>
-                <Button onClick={onNextClick}><TbPlayerSkipForwardFilled/></Button>
+                <Button className="button_1" onClick={onNextClick}><TbPlayerSkipForwardFilled/></Button>
             </HStack>
         </Box>);
 };

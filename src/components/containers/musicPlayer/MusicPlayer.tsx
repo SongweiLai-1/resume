@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import MusicControl from "./MusicControl";
-import { HStack, Image, Box,Stack, Text } from "@chakra-ui/react";
+import { HStack, Image, Box, Text } from "@chakra-ui/react";
 import './MusicPlayer.css'
 
 // 定义播放列表条目的类型
@@ -65,28 +65,27 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks }) => {
   }, [trackIndex]);
 
   return (
+      <Box>
+        <HStack>
+            <Text fontSize='xl'>{title}</Text>
+            <Text>-</Text>
+            <Text fontSize='xs'>{artist}</Text>
 
-      <HStack>
-
-          <Text fontSize='xl'>{title}</Text>
-          <Text>-</Text>
-          <Text fontSize='xs'>{artist}</Text>
-
-        <MusicControl
-            isPlaying={isPlaying}
-            onPlayPauseClick={togglePlayPause}
-            onPrevClick={toPrevTrack}
-            onNextClick={toNextTrack}
-        />
-        <Box overflow="hidden">
-          <Image
-              src={image}
-              borderRadius='full'
-              boxSize='60px'
-              className={isPlaying ? "rotate" : ""}/>
-        </Box>
-
-      </HStack>
+          <MusicControl
+              isPlaying={isPlaying}
+              onPlayPauseClick={togglePlayPause}
+              onPrevClick={toPrevTrack}
+              onNextClick={toNextTrack}
+          />
+          <Box overflow="hidden">
+            <Image
+                src={image}
+                borderRadius='full'
+                boxSize='60px'
+                className={isPlaying ? "rotate" : ""}/>
+          </Box>
+        </HStack>
+      </Box>
   );
 };
 

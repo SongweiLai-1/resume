@@ -24,20 +24,21 @@ const Job = ({ jobName, company, date, description }: JobProps) => {
 
 const JobExperienceBox = () => {
     return (
-        <>
+        <Box>
             {experience.map((job, index) => (
-                <Card key={index} my={2}  >
-                    <CardBody >
-                        <Job
-                            jobName={job.occupation}
-                            company={job.company_name}
-                            date={job.date}
-                            description={job.description}
-                        />
-                    </CardBody>
-                </Card>
+
+                    <Card key={index} my={2}  >
+                        <CardBody >
+                            <Job
+                                jobName={job.occupation}
+                                company={job.company_name}
+                                date={job.date}
+                                description={job.description}
+                            />
+                        </CardBody>
+                    </Card>
             ))}
-        </>
+        </Box>
     );
 }
 

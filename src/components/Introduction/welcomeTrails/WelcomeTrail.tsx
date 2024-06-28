@@ -1,10 +1,20 @@
 import Trail from './Trail';
+import {useEffect} from "react";
 
 interface Props {
-    text?: string;
+    onAnimationEnd: () => void;
 }
 
-const WelcomeTrails = () => {
+const WelcomeTrails = ({onAnimationEnd}: Props) => {
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (onAnimationEnd) {
+                onAnimationEnd();
+            }
+        }, 8000); // 假设动画持续8秒
+        return () => clearTimeout(timer);
+    }, [onAnimationEnd]);
 
     return (
         <Trail>

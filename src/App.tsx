@@ -62,7 +62,7 @@ function App() {
                     </GridItem>
                     <GridItem
                         w="auto"
-                        h={introHeight}
+                        h="auto"
                         backgroundImage={Background1}
                         bgPosition="center"
                         bgRepeat="no-repeat"
@@ -70,7 +70,7 @@ function App() {
                         area="Int"
                     >
                         <Element name="Introduction">
-                            <Box id="Introduction">
+                            <Box h="100%" id="Introduction">
                                 <ShowIntro />
                             </Box>
                         </Element>

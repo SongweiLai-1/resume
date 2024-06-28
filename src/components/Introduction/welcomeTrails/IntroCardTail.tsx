@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {animated, useTrail} from "@react-spring/web";
 import IntroCard from "../IntroCard";
+import {Box} from "@chakra-ui/react";
 
 const handleEmailClick = (doc: string, action: string) => {
     if (action === "email") {
@@ -41,12 +42,12 @@ const IntroCardTail = ({speed}: Props) => {
     });
 
     return (
-        <div>
+        <Box>
             {trails.map((props, index) => (
                 <animated.div key={index} style={props}>
                     <IntroCard
                         h= "600px"
-                        w="400px"
+                        w= "400px"
                         key={index}
                         name="Songwei Lai"
                         avatarUrl="https://bit.ly/dan-abramov"
@@ -59,7 +60,7 @@ const IntroCardTail = ({speed}: Props) => {
                     />
                 </animated.div>
             ))}
-        </div>
+        </Box>
     );
 };
 

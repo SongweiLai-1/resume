@@ -2,16 +2,9 @@ import React, { ReactNode } from 'react';
 import {
     Box,
     Flex,
-    Avatar,
     HStack,
     Link,
     IconButton,
-    Button,
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem,
-    MenuDivider,
     useDisclosure,
     useColorModeValue,
     Stack,
@@ -80,14 +73,12 @@ const NavBar: React.FC<NavBarProps> = ({ onSectionClick }) => {
                         </HStack>
                     </HStack>
                     <Box m={5}>
-
-                        <Box  h="100%"> <MusicPlayer tracks={playList}/> </Box>
-
+                         <MusicPlayer tracks={playList}/>
                     </Box>
                 </Flex>
                 {isOpen ? (
-                    <Box pb={4} display={{ md: 'none' }}>
-                        <Stack as={'nav'} spacing={4}>
+                    <Box pb={3} display={{ md: 'none' }}>
+                        <Stack as={'nav'} spacing={2}>
                             {Links.map((link) => (
                                 <NavLink key={link} onClick={() => handleNavClick(link)}>
                                     {link}
