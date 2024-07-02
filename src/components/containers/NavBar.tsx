@@ -12,18 +12,20 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import MusicPlayer from './musicPlayer/MusicPlayer';
 import playList from './musicPlayer/playList';
-const Links = ['Introduction', 'Experience ','Education', 'PhotoGrid', 'Github','Others'];
+
+const Links = ['Introduction', 'Experience', 'Education', 'PhotoGrid', 'Github', 'Others'];
 
 interface NavLinkProps {
     children: ReactNode;
     onClick: () => void;
+    href?: string; // Optional href prop to handle external links
 }
 
 interface NavBarProps {
     onSectionClick: (section: string) => void;
 }
 
-const NavLink = ({ children, onClick }: NavLinkProps) => (
+const NavLink = ({ children, onClick, href }: NavLinkProps) => (
     <Link
         px={2}
         py={1}
@@ -32,8 +34,9 @@ const NavLink = ({ children, onClick }: NavLinkProps) => (
             textDecoration: 'none',
             bg: useColorModeValue('gray.200', 'gray.700'),
         }}
-        href={'#'}
+        href={href}
         onClick={onClick}
+        isExternal={!!href} // Add this prop to make it clear that the link is external if href is provided
     >
         {children}
     </Link>
@@ -43,8 +46,12 @@ const NavBar: React.FC<NavBarProps> = ({ onSectionClick }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const handleNavClick = (section: string) => {
-        onSectionClick(section);
-        onClose(); // Close the mobile menu when a link is clicked
+        if (section === 'Github') {
+            window.location.href = 'https://github.com/SongweiLai-1'; // Replace with your GitHub profile URL
+        } else {
+            onSectionClick(section);
+            onClose(); // Close the mobile menu when a link is clicked
+        }
     };
 
     return (
@@ -66,21 +73,29 @@ const NavBar: React.FC<NavBarProps> = ({ onSectionClick }) => {
                             display={{ base: 'none', md: 'flex' }}
                         >
                             {Links.map((link) => (
-                                <NavLink key={link} onClick={() => handleNavClick(link)}>
+                                <NavLink
+                                    key={link}
+                                    onClick={() => handleNavClick(link)}
+                                    href={link === 'Github' ? 'https://github.com/SongweiLai-1' : undefined}
+                                >
                                     {link}
                                 </NavLink>
                             ))}
                         </HStack>
                     </HStack>
                     <Box m={5}>
-                         <MusicPlayer tracks={playList}/>
+                        <MusicPlayer tracks={playList} />
                     </Box>
                 </Flex>
                 {isOpen ? (
                     <Box pb={3} display={{ md: 'none' }}>
                         <Stack as={'nav'} spacing={2}>
                             {Links.map((link) => (
-                                <NavLink key={link} onClick={() => handleNavClick(link)}>
+                                <NavLink
+                                    key={link}
+                                    onClick={() => handleNavClick(link)}
+                                    href={link === 'Github' ? 'https://github.com/SongweiLai-1' : undefined}
+                                >
                                     {link}
                                 </NavLink>
                             ))}

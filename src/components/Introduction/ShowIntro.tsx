@@ -38,22 +38,22 @@ export default function MyComponent() {
                 <Box>
                     {isSmallScreen ? (
                         <Stack >
-                            <Box>
-                                <IntroCardTail speed={11500} />
+                            <Box >
+                                <IntroCardTail speed={11000} />
                             </Box>
                             {showExperienceBox && (
-                                <Box w="100%" maxW="600px">
-                                    <ExperienceBox speed={12000} />
+                                <Box w="95%" maxW="600px">
+                                    <ExperienceBox speed={11400} />
                                 </Box>
                             )}
                         </Stack>
                     ) : (
                         <Flex justify="space-between"  >
-                            <Box flex="1">
+                            <Box flex="1" ml="5%">
                                 <IntroCardTail speed={11500} />
                             </Box>
                             {showExperienceBox && (
-                                <Box w="100%" maxW="900px">
+                                <Box w="95%" maxW="700px" mr="5%">
                                     <ExperienceBox speed={12000} />
                                 </Box>
                             )}

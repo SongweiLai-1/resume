@@ -33,9 +33,13 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks }) => {
     if (trackIndex - 1 < 0) {
       setTrackIndex(tracks.length - 1);
       console.log(trackIndex)
+      setIsPlaying(true);
+
     } else {
       setTrackIndex(trackIndex - 1);
       console.log(trackIndex)
+      setIsPlaying(true);
+
     }
   };
 
@@ -43,9 +47,13 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks }) => {
     if (trackIndex < tracks.length - 1) {
       setTrackIndex(trackIndex + 1);
       console.log(trackIndex)
+      setIsPlaying(true);
+
     } else {
       setTrackIndex(0);
       console.log(trackIndex)
+      setIsPlaying(true);
+
     }
   };
 

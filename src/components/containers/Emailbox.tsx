@@ -21,7 +21,7 @@ import {
 import { MdEmail, MdLocationOn, MdOutlineEmail, MdPhone } from 'react-icons/md';
 import { BsPerson } from 'react-icons/bs';
 import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa6";
-import {profiles} from "../../assets/profile";
+import { profiles } from "../../assets/profile";
 
 const Emailbox = () => {
     const [formState, setFormState] = useState({
@@ -44,10 +44,17 @@ const Emailbox = () => {
         // You can further handle the form submission, e.g., send the data to a server
     };
 
+    const handleCopy = (text: string) => {
+        navigator.clipboard.writeText(text).then(() => {
+            alert('Copied to clipboard');
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    };
+
     const linkinUrl = profiles[0].linkin;
     const githubURL = profiles[0].github;
     const insURL = profiles[0].ins;
-
 
     return (
         <Container maxW="full" mt={0} centerContent overflow="hidden">
@@ -77,6 +84,7 @@ const Emailbox = () => {
                                                     variant="ghost"
                                                     color="#DCE2FF"
                                                     leftIcon={<MdPhone color="#1970F1" size="20px" />}
+                                                    onClick={() => handleCopy('61+ 0402214407')}
                                                 >
                                                     61+ 0402214407
                                                 </Button>
@@ -87,6 +95,7 @@ const Emailbox = () => {
                                                     variant="ghost"
                                                     color="#DCE2FF"
                                                     leftIcon={<MdEmail color="#1970F1" size="20px" />}
+                                                    onClick={() => handleCopy('songwei.lai.9@gmail')}
                                                 >
                                                     songwei.lai.9@gmail
                                                 </Button>
@@ -97,34 +106,32 @@ const Emailbox = () => {
                                                     variant="ghost"
                                                     color="#DCE2FF"
                                                     leftIcon={<MdLocationOn color="#1970F1" size="20px" />}
+                                                    onClick={() => handleCopy('Sydney-NSW-Aus')}
                                                 >
                                                     Sydney-NSW-Aus
                                                 </Button>
                                             </VStack>
                                         </Box>
                                         <HStack
-                                            mt={{lg: 3, md: 1}}
+                                            mt={{ lg: 3, md: 1 }}
                                             spacing={5}
                                             px={5}
                                             alignItems="flex-start"
                                         >
                                             <a href={linkinUrl} target="_blank" rel="noopener noreferrer">
-                                                <IconButton aria-label='Search Linkedin' icon={<FaLinkedin/>}/>
+                                                <IconButton aria-label='Search Linkedin' icon={<FaLinkedin />} />
                                             </a>
-
                                             <a href={githubURL} target="_blank" rel="noopener noreferrer">
-                                            <IconButton aria-label='Search Github' icon={<FaGithub/>}/>
+                                                <IconButton aria-label='Search Github' icon={<FaGithub />} />
                                             </a>
-
                                             <a href={insURL} target="_blank" rel="noopener noreferrer">
-                                            <IconButton aria-label='Search Instagram' icon={<FaInstagram/>}/>
+                                                <IconButton aria-label='Search Instagram' icon={<FaInstagram />} />
                                             </a>
-
                                         </HStack>
                                     </Box>
                                 </WrapItem>
                                 <WrapItem>
-                                <Box bg="white" borderRadius="lg">
+                                    <Box bg="white" borderRadius="lg">
                                         <Box m={8} color="#0B0E3F">
                                             <form onSubmit={handleSubmit}>
                                                 <VStack pl={0} spacing={3} alignItems="flex-start">
