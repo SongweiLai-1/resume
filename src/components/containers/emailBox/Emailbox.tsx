@@ -21,7 +21,7 @@ import {
 import { MdEmail, MdLocationOn, MdOutlineEmail, MdPhone } from 'react-icons/md';
 import { BsPerson } from 'react-icons/bs';
 import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa6";
-import { profiles } from "../../assets/profile";
+import { profiles } from "../../../assets/profile";
 
 const Emailbox = () => {
     const [formState, setFormState] = useState({

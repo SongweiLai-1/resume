@@ -1,9 +1,9 @@
-// SendEmail.tsx
+// Email.tsx
 import React from 'react';
-import EmailBox from "./containers/Emailbox";
-import EmailSendedBox from "./containers/EmailSendedBox";
+import EmailBox from "./Emailbox";
+import EmailSendedBox from "./EmailSendedBox";
 
-const SendEmail = () => {
+const Email = () => {
     const [emailIsSend, setEmailIsSend] = React.useState(false);
 
     const handleEmailSubmit = (data: { name: string; email: string; content: string }) => {
@@ -26,4 +26,4 @@ const SendEmail = () => {
     );
 };
 
-export default SendEmail;
+export default Email;

@@ -1,11 +1,11 @@
 import React from 'react';
 import NavBar from './components/containers/NavBar';
 import { Box, Grid, GridItem, Stack, useBreakpointValue } from '@chakra-ui/react';
-import SendEmail from './components/SendEmail';
-import PhotoGrid from './components/photoGrid/PhotoGrid';
-import ShowIntro from './components/Introduction/ShowIntro';
+import Email from './components/containers/emailBox/Email';
+import PhotoGrid from './components/containers/photoGrid/PhotoGrid';
+import ShowIntro from './components/containers/Introduction/Introduction';
 import Background1 from './assets/IntroBackGround.jpg';
-import Edu from './components/EduBox';
+import Edu from './components/containers/education/EduBox';
 import { Element, scroller } from 'react-scroll';
 
 
@@ -106,7 +106,7 @@ function App() {
                     <GridItem h="auto" w="100%" bg="#253849" area="Others">
                         <Element name="Others">
                             <Box id="Others" display="flex" alignItems="center" justifyContent="center">
-                                <SendEmail />
+                                <Email />
                             </Box>
                         </Element>
                     </GridItem>

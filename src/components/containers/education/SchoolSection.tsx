@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Flex, Image, Text, Stack } from '@chakra-ui/react';
-import {educationData} from '../../assets/profile';
+import {educationData} from '../../../assets/profile';
 
 interface EducationProps {
     schoolLogo: string;
