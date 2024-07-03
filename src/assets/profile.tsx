@@ -45,15 +45,15 @@ export const educationData = [
     {
         schoolLogo: unswLogo,
         schoolName: 'University Of New South Wales',
-        degree: 'Bachelor of Commerce',
+        degree: 'Master of Commerce',
         time: '2021 - 2024',
-        description: 'Focused on software engineering and artificial intelligence.',
+        description: 'Focused on research discipline used to identify business needs and determine solutions to business problems..',
     },
     {
         schoolLogo: utsLogo,
         schoolName: 'University Of Technology Sydney',
-        degree: 'Master of Science in Computer Science',
+        degree: 'Bachelor of Science in Computer Science',
         time: '2018 - 2021',
-        description: 'Specialized in machine learning and data science.',
+        description: 'Specialized in machine learning and data science, Web3 and Full Stack Development.',
     },
 ];

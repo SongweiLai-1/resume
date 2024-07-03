@@ -46,7 +46,7 @@ const IntroCardTail = ({speed}: Props) => {
             {trails.map((props, index) => (
                 <animated.div key={index} style={props}>
                     <IntroCard
-                        h= "600px"
+                        h= "550px"
                         w= "400px"
                         key={index}
                         name="Songwei Lai"

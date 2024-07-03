@@ -62,13 +62,20 @@ const MyComponent: React.FC = () => {
     });
 
     return (
-        <div style={{   overflowY: 'scroll' }}>
-            <Grid templateColumns="30% 70%" gap={1}>
-                <GridItem w="98%">
-                    {/* 空白网格项 */}
+        <div style={{overflowY: 'scroll' }}>
+            <Grid templateColumns="30% 70%" >
+                <GridItem >
+                    <Box
+                        position="relative"
+                        zIndex="2"
+                        justifyContent="center"
+                        alignItems="flex-start"
+                        ml="40px">
+                        {isOpen ?  <EduCardTrail /> : null}
+                    </Box>
                 </GridItem>
+
                 <GridItem
-                    w="98%"
                     h="500px"
                     backgroundImage={`url(${educationBG})`}
                     backgroundPosition="center"
@@ -76,15 +83,12 @@ const MyComponent: React.FC = () => {
                     backgroundSize="2000px"
                     as={animated.div}
                     style={Spring as any}
+                    position="relative"
+                    zIndex="1"  // 背景图片设置较低的 z-index 值
                 >
-                    <Box
-                        mt="60px"
-                        ml="-400px"
-                    >
-                        {isOpen ?  <EduCardTrail /> : null}
-                    </Box>
                 </GridItem>
             </Grid>
+
         </div>
     );
 };

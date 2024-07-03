@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import NavBar from './components/containers/NavBar';
 import { Box, Grid, GridItem, Stack, useBreakpointValue } from '@chakra-ui/react';
 import Email from './components/containers/emailBox/Email';
@@ -7,10 +7,16 @@ import ShowIntro from './components/containers/Introduction/Introduction';
 import Background1 from './assets/IntroBackGround.jpg';
 import Edu from './components/containers/education/EduBox';
 import { Element, scroller } from 'react-scroll';
-
+import hideNav from './components/function/hideNav';
 
 function App() {
     const introHeight = useBreakpointValue({ base: '800px', sm: '1200px', md: '1100px', lg: '800px' });
+
+    const scrollDirection = hideNav();
+
+    useEffect(() => {
+        console.log(`Scroll direction: ${scrollDirection}`);
+    }, [scrollDirection]);
 
     const handleSectionClick = (section: string) => {
         if (section === 'Education') {
@@ -55,11 +61,19 @@ function App() {
         `}
             >
                 <Stack>
-                    <GridItem h="auto" width="100%" bg="black.300" area="nav">
-                        <Box id="NavBar">
+
+                    <GridItem h="auto"
+                              width="100%"
+                              bg="black.300"
+                              zIndex="10"
+                              area="nav"
+                              position="fixed" >
+                        <Box id="NavBar"  >
                             <NavBar onSectionClick={handleSectionClick} />
                         </Box>
                     </GridItem>
+
+
                     <GridItem
                         w="auto"
                         h="auto"

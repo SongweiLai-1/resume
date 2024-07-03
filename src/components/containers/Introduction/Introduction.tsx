@@ -13,7 +13,6 @@ export default function MyComponent() {
 
     const isFinish = () => {
         setTypeFinish(true);
-        console.log('Typing animation complete!');
     };
 
     const handleWelcomeTrailEnd = () => {
