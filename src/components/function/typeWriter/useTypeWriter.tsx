@@ -7,6 +7,7 @@ export interface TypeProps {
     speed?: number;
     pauseDuration?: number;
     timeStart?: number;
+    onFinish?: () => void; // Add onFinish callback
 }
 
 const Blink = ({ blink }: { blink: boolean }) => {
@@ -16,10 +17,9 @@ const Blink = ({ blink }: { blink: boolean }) => {
     });
 
     return <animated.span style={trails[0]}>|</animated.span>;
-}
+};
 
-const UseTypeWriter = ({ text, speed = 50, pauseDuration = 10, timeStart = 100 }: TypeProps) => {
-
+const useTypewriter = ({ text, speed = 50, pauseDuration = 10, timeStart = 100, onFinish }: TypeProps) => {
     const [displayText, setText] = useState('');
     const [isTypingComplete, setIsTypingComplete] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
@@ -48,6 +48,7 @@ const UseTypeWriter = ({ text, speed = 50, pauseDuration = 10, timeStart = 100 }
         const interval = setInterval(() => {
             if (isTypingComplete) {
                 clearInterval(interval);
+                if (onFinish) onFinish(); // Call onFinish callback
                 return;
             }
 
@@ -67,16 +68,17 @@ const UseTypeWriter = ({ text, speed = 50, pauseDuration = 10, timeStart = 100 }
                 } else {
                     clearInterval(interval);
                     setIsTypingComplete(true);
+                    if (onFinish) onFinish(); // Call onFinish callback
                 }
             }
         }, speed);
 
         return () => clearInterval(interval);
-    }, [start, text, speed, pauseDuration, isTypingComplete]);
+    }, [start, text, speed, pauseDuration, isTypingComplete, onFinish]);
 
     useEffect(() => {
         if (isTypingComplete) {
-            setBlinking(false);
+            setBlinking(true);
             return;
         }
 
@@ -89,10 +91,10 @@ const UseTypeWriter = ({ text, speed = 50, pauseDuration = 10, timeStart = 100 }
 
     return (
         <Flex>
-                {displayText}
-                {start ? (!isTypingComplete && <Blink blink={blinking} />) : null}
+            {displayText}
+            {start && <Blink blink={blinking} />}
         </Flex>
     );
 };
 
-export default UseTypeWriter;
+export default useTypewriter;

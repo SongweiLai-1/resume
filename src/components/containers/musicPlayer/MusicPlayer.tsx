@@ -1,7 +1,7 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import MusicControl from "./MusicControl";
 import { HStack, Image, Box, Text } from "@chakra-ui/react";
-import './MusicPlayer.css'
+import './MusicPlayer.css';
 
 // 定义播放列表条目的类型
 interface Track {
@@ -20,6 +20,7 @@ interface MusicPlayerProps {
 const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks }) => {
   const [trackIndex, setTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
 
   const { title, artist, color, image, audioSrc } = tracks[trackIndex];
 
@@ -30,54 +31,58 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks }) => {
   };
 
   const toPrevTrack = () => {
-    if (trackIndex - 1 < 0) {
-      setTrackIndex(tracks.length - 1);
-      console.log(trackIndex)
-      setIsPlaying(true);
-
-    } else {
-      setTrackIndex(trackIndex - 1);
-      console.log(trackIndex)
-      setIsPlaying(true);
-
-    }
+    setTrackIndex((prevIndex) => (prevIndex - 1 + tracks.length) % tracks.length);
   };
 
   const toNextTrack = () => {
-    if (trackIndex < tracks.length - 1) {
-      setTrackIndex(trackIndex + 1);
-      console.log(trackIndex)
-      setIsPlaying(true);
-
-    } else {
-      setTrackIndex(0);
-      console.log(trackIndex)
-      setIsPlaying(true);
-
-    }
+    setTrackIndex((prevIndex) => (prevIndex + 1) % tracks.length);
   };
 
-  useEffect (() => {
-    if (isPlaying) {
-      audioRef.current.play();
+  useEffect(() => {
+    if (isPlaying && hasUserInteracted) {
+      audioRef.current.play().catch(error => {
+        console.error('Error attempting to play', error);
+        setIsPlaying(false); // Set isPlaying to false if playback fails
+      });
     } else {
       audioRef.current.pause();
     }
-  }, [isPlaying]);
+  }, [isPlaying, hasUserInteracted]);
 
   useEffect(() => {
     audioRef.current.pause();
     audioRef.current = new Audio(audioSrc);
-    audioRef.current.play();
 
-  }, [trackIndex]);
+    if (isPlaying && hasUserInteracted) {
+      audioRef.current.play().catch(error => {
+        console.error('Error attempting to play', error);
+        setIsPlaying(false); // Set isPlaying to false if playback fails
+      });
+    }
+  }, [trackIndex, audioSrc, isPlaying, hasUserInteracted]);
+
+  useEffect(() => {
+    const handleUserInteraction = () => {
+      setHasUserInteracted(true);
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('keydown', handleUserInteraction);
+    };
+
+    document.addEventListener('click', handleUserInteraction);
+    document.addEventListener('keydown', handleUserInteraction);
+
+    return () => {
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('keydown', handleUserInteraction);
+    };
+  }, []);
 
   return (
       <Box>
         <HStack>
-            <Text fontSize='xl'>{title}</Text>
-            <Text>-</Text>
-            <Text fontSize='xs'>{artist}</Text>
+          <Text fontSize='xl'>{title}</Text>
+          <Text>-</Text>
+          <Text fontSize='xs'>{artist}</Text>
 
           <MusicControl
               isPlaying={isPlaying}
@@ -90,7 +95,8 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks }) => {
                 src={image}
                 borderRadius='full'
                 boxSize='60px'
-                className={isPlaying ? "rotate" : ""}/>
+                className={isPlaying ? "rotate" : ""}
+            />
           </Box>
         </HStack>
       </Box>
