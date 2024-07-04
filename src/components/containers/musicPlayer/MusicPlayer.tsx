@@ -94,7 +94,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks }) => {
             <Image
                 src={image}
                 borderRadius='full'
-                boxSize='60px'
+                boxSize='55px'
                 className={isPlaying ? "rotate" : ""}
             />
           </Box>

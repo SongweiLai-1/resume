@@ -7,7 +7,7 @@ export interface TypeProps {
     speed?: number;
     pauseDuration?: number;
     timeStart?: number;
-    onFinish?: () => void; // Add onFinish callback
+    onFinish?: () => void; // 添加 onFinish 回调函数
 }
 
 const Blink = ({ blink }: { blink: boolean }) => {
@@ -22,12 +22,10 @@ const Blink = ({ blink }: { blink: boolean }) => {
 const useTypewriter = ({ text, speed = 50, pauseDuration = 10, timeStart = 100, onFinish }: TypeProps) => {
     const [displayText, setText] = useState('');
     const [isTypingComplete, setIsTypingComplete] = useState(false);
-    const [isPaused, setIsPaused] = useState(false);
     const [blinking, setBlinking] = useState(false);
     const [start, setStart] = useState(false);
-
-    const isPausedRef = useRef(isPaused);
-    const totalElapsedTimeRef = useRef(0);
+    const typingIndexRef = useRef(0);
+    const isPausedRef = useRef(false);
 
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -38,43 +36,23 @@ const useTypewriter = ({ text, speed = 50, pauseDuration = 10, timeStart = 100, 
     }, [timeStart]);
 
     useEffect(() => {
-        isPausedRef.current = isPaused;
-    }, [isPaused]);
-
-    useEffect(() => {
         if (!start) return;
 
-        let i = 0;
         const interval = setInterval(() => {
-            if (isTypingComplete) {
-                clearInterval(interval);
-                if (onFinish) onFinish(); // Call onFinish callback
-                return;
-            }
+            if (isTypingComplete || isPausedRef.current) return;
 
-            if (isPausedRef.current) return;
-
-            if (totalElapsedTimeRef.current >= pauseDuration) {
-                setIsPaused(true);
-                setTimeout(() => {
-                    setIsPaused(false);
-                    totalElapsedTimeRef.current = 0;
-                }, pauseDuration);
+            if (typingIndexRef.current < text.length) {
+                setText((prevText) => prevText + text.charAt(typingIndexRef.current));
+                typingIndexRef.current++;
             } else {
-                if (i < text.length) {
-                    setText(prevText => prevText + text.charAt(i));
-                    i++;
-                    totalElapsedTimeRef.current += speed;
-                } else {
-                    clearInterval(interval);
-                    setIsTypingComplete(true);
-                    if (onFinish) onFinish(); // Call onFinish callback
-                }
+                clearInterval(interval);
+                setIsTypingComplete(true);
+                if (onFinish) onFinish(); // 调用 onFinish 回调函数
             }
         }, speed);
 
         return () => clearInterval(interval);
-    }, [start, text, speed, pauseDuration, isTypingComplete, onFinish]);
+    }, [start, text, speed, isTypingComplete, onFinish]);
 
     useEffect(() => {
         if (isTypingComplete) {
@@ -82,11 +60,21 @@ const useTypewriter = ({ text, speed = 50, pauseDuration = 10, timeStart = 100, 
             return;
         }
 
-        const blinkInterval = setInterval(() => {
-            setBlinking(prevBlink => !prevBlink);
-        }, 500);
+        const pauseInterval = setInterval(() => {
+            isPausedRef.current = !isPausedRef.current;
+        }, pauseDuration);
 
-        return () => clearInterval(blinkInterval);
+        return () => clearInterval(pauseInterval);
+    }, [isTypingComplete, pauseDuration]);
+
+    useEffect(() => {
+        if (isTypingComplete) {
+            const blinkInterval = setInterval(() => {
+                setBlinking((prevBlink) => !prevBlink);
+            }, 500);
+
+            return () => clearInterval(blinkInterval);
+        }
     }, [isTypingComplete]);
 
     return (

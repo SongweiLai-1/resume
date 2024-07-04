@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import NavBar from './components/containers/NavBar';
 import { Box, Grid, GridItem, Stack, useBreakpointValue } from '@chakra-ui/react';
 import Email from './components/containers/emailBox/Email';
@@ -8,14 +8,20 @@ import Background1 from './assets/IntroBackGround.jpg';
 import Edu from './components/containers/education/EduBox';
 import { Element, scroller } from 'react-scroll';
 import hideNav from './components/function/hideNav';
-
+import './App.css';
 function App() {
-    const introHeight = useBreakpointValue({ base: '800px', sm: '1200px', md: '1100px', lg: '800px' });
+    const introHeight = useBreakpointValue({ base: '800px', sm: '1400px', md: '1400px', lg: '800px' });
+    const [hide,setHide] = useState(false)
 
     const scrollDirection = hideNav();
 
     useEffect(() => {
         console.log(`Scroll direction: ${scrollDirection}`);
+        if (scrollDirection === 'down'){
+            setHide(true)
+        } else {
+            setHide(false)
+        }
     }, [scrollDirection]);
 
     const handleSectionClick = (section: string) => {
@@ -64,13 +70,12 @@ function App() {
 
                     <GridItem h="auto"
                               width="100%"
-                              bg="black.300"
                               zIndex="10"
                               area="nav"
-                              position="fixed" >
-                        <Box id="NavBar"  >
+                              position="fixed"
+                              className={`navbar ${hide ?  'hidden' :'visible' }`}
+                    >
                             <NavBar onSectionClick={handleSectionClick} />
-                        </Box>
                     </GridItem>
 
 
@@ -92,9 +97,8 @@ function App() {
 
                     <GridItem>
                         <Element name="Experience">
-                            <Box bg="black" id="Experience" display="flex" alignItems="center" justifyContent="center">
-                                <p>Experience</p>
-                            </Box>
+                            <Box  id="Experience" display="flex" alignItems="center" justifyContent="center">
+                           </Box>
                         </Element>
                     </GridItem>
 
@@ -105,8 +109,6 @@ function App() {
                             </Box>
                         </Element>
                     </GridItem>
-
-
 
                     <GridItem p="100px" area="grid">
                         <Element name="PhotoGrid">

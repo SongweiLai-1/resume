@@ -30,7 +30,7 @@ export default function MyComponent() {
     return (
         <Box h="100vh">
             <Stack>
-                <Box ml={30} mt={10}>
+                <Box ml={30} mt={20}>
                     <TypeWriter text={introduction} timeStart={8000} onFinish={isFinish} fontSize="32px" color="white" />
                 </Box>
 
